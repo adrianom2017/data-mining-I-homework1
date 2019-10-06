@@ -15,16 +15,21 @@ import numpy as np
 import math
 
 def manhattan_dist(v1, v2):
-    return np.random.randn()  # You must delete this line and implement the function
+    return minkowski_dist(v1, v2, 1)
 
 def hamming_dist(v1, v2):
-    return np.random.randn()  # You must delete this line and implement the function
+    t1 = np.ndarray.copy(v1)
+    t2 = np.ndarray.copy(v2)
+    t1[t1>0] = 1
+    t2[t2>0] = 1
+    return np.sum(np.abs(t1-t2))
 
 def euclidean_dist(v1, v2):
-    return np.random.randn()  # You must delete this line and implement the function
+    return minkowski_dist(v1, v2, 2)
 
 def chebyshev_dist(v1, v2):
-    return np.random.randn()  # You must delete this line and implement the function
+    return np.max(np.abs(v1-v2))
 
 def minkowski_dist(v1, v2, d):
-    return np.random.randn()  # You must delete this line and implement the function
+    t = np.sum(np.abs(v1-v2)**d)
+    return t**(1/d)
