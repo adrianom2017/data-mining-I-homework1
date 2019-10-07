@@ -105,6 +105,7 @@ if not os.path.exists(args.outdir):
 # Create the output file and fill it with content as required by the specifications
 file_name = "{}/output_distances.txt".format(args.outdir)
 with open(file_name, 'w') as f_out:
+    f_out.write("Pair of newsgroups\tManhattan\tHamming\tEuclidean\tChebyshev\tMinkowski d=3\tMinkowski d=4\n")
     # Create a list with the group names
     lst_groups = list(dict_doc.keys())
 
