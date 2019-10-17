@@ -7,12 +7,6 @@ import distance_fn as d
 a = np.array([1,2,3])
 b = np.array([2,3,4])
 
-# print(d.hamming_dist(a,b))
-# print(d.manhattan_dist(a,b))
-# print(d.euclidean_dist(a,b))
-# print(d.minkowski_dist(a,b,3))
-# print(d.chebyshev_dist(a,b))
-
 df = pd.read_csv('./results/output_distances.txt', sep='\t')
 
 x = [i.split(':') for i in df['Pair of newsgroups']]
@@ -22,7 +16,6 @@ cat = []
 for i in x:
     if i not in cat:
         cat.append(i)
-
 
 for idx in range(len(cat)):
     tmp = df.loc[df['Pair of newsgroups'].str.contains(cat[idx])].copy()
@@ -41,10 +34,10 @@ for i in data['Metric']:
     if i not in metrics:
         metrics.append(i)
 
-i = 1
-plt.figure(figsize=(10,5))
-p = sns.catplot(x="Pair of newsgroups", y = "Score", hue = "Compared", kind="point", data = data.loc[data['Metric']== metrics[i]], legend_out=False)
-plt.title(metrics[i])
-plt.show()
-# p.savefig(metric + '.png')
+for i in range(len(metrics)):
+    fig, ax = plt.subplots(1,1,figsize=(10,5))
+    sns.catplot(ax = ax, x="Pair of newsgroups", y = "Score", hue = "Compared", kind="point", data = data.loc[data['Metric']== metrics[i]], legend_out=True)
+    # ax.legend(loc = 'upper right')
+    fig.suptitle(metrics[i])
+    fig.savefig('./img/'+ metrics[i] + '.png')
 

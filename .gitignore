@@ -1,0 +1,13 @@
+#filetypes to ignore
+*.pdf
+*.png
+*.zip
+*.txt
+*.DS_Store
+
+#directories
+report/
+literature/
+img/
+results/
+20news-bydate-train-subset/
